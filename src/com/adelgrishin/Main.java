@@ -20,9 +20,11 @@ public class Main {
     System.out.println("Какой метод сортировки применить?");
     System.out.println("1. Пузырьком");
     System.out.println("2. С вставками");
+    System.out.println("3. Выбором");
     int num = in.nextInt();
     if (num==1) bubble(n);
     else if (num==2) insert(n);
+    else if (num==3) choice(n);
     print(n);
     }
 
@@ -51,6 +53,22 @@ public class Main {
             }
         }
     }
+
+    static void choice(int n) {
+        int min;
+        for (int i = 0; i < n-1; i++) {
+            min = i;
+            for (int j = i+1; j < n; j++ ) {
+                if (array.get(min) > array.get(j)) min = j;
+            }
+            if (min!= i) {
+                int t = array.get(i);
+                array.set(i, array.get(min));
+                array.set(min, t);
+            }
+        }
+    }
+
 
     static void print(int n) {
         for (int i = 0; i < n; i++) {
