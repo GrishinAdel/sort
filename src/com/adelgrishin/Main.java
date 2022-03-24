@@ -21,10 +21,12 @@ public class Main {
     System.out.println("1. Пузырьком");
     System.out.println("2. С вставками");
     System.out.println("3. Выбором");
+    System.out.println("4. Алгоритм шелла");
     int num = in.nextInt();
     if (num==1) bubble(n);
     else if (num==2) insert(n);
     else if (num==3) choice(n);
+    else if (num==4) shell(n);
     print(n);
     }
 
@@ -69,6 +71,21 @@ public class Main {
         }
     }
 
+    static void shell(int n) {
+        int step = n/2;
+        while (step>0) {
+            for (int i = step; i < n; i++) {
+                for (int j = i; j >= step; j-= step) {
+                    if (array.get(j) < array.get(j-step)) {
+                        int t = array.get(j);
+                        array.set(j, array.get(j-step));
+                        array.set(j-step, t);
+                    }
+                }
+            }
+            step/=2;
+        }
+    }
 
     static void print(int n) {
         for (int i = 0; i < n; i++) {
