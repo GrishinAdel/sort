@@ -22,11 +22,20 @@ public class Main {
     System.out.println("2. С вставками");
     System.out.println("3. Выбором");
     System.out.println("4. Алгоритм шелла");
+    System.out.println("5. Алгоритм быстрой сортировки (Quicksort)");
+    System.out.println("6. Пирамидная");
     int num = in.nextInt();
     if (num==1) bubble(n);
     else if (num==2) insert(n);
     else if (num==3) choice(n);
     else if (num==4) shell(n);
+    else if (num==5) {
+        int low = 0;
+        int high = n - 1;
+        quickSort(low, high, n);
+    } else if (num==6) {
+
+    }
     print(n);
     }
 
@@ -86,6 +95,42 @@ public class Main {
             step/=2;
         }
     }
+
+    public static void quickSort(int low, int high, int n) {
+
+        if (low >= high)
+            return;//завершить выполнение если уже нечего делить
+
+        // выбрать опорный элемент
+        int middle = low + (high - low) / 2;
+        int opora = array.get(middle);
+
+        // разделить на подмассивы, который больше и меньше опорного элемента
+        int i = low, j = high;
+        while (i <= j) {
+            while (array.get(i) < opora) {
+                i++;
+            }
+
+            while (array.get(j) > opora) {
+                j--;
+            }
+
+            if (i <= j) {//меняем местами
+                int temp = array.get(i);
+                array.set(i, array.get(j));
+                array.set(j, temp);
+                i++;
+                j--;
+            }
+        }
+        // вызов рекурсии для сортировки левой и правой части
+        if (low < j)
+            quickSort(low, j, n);
+        if (high > i)
+            quickSort(i, high, n);
+    }
+
 
     static void print(int n) {
         for (int i = 0; i < n; i++) {
