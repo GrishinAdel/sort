@@ -99,24 +99,18 @@ public class Main {
     public static void quickSort(int low, int high, int n) {
 
         if (low >= high)
-            return;//завершить выполнение если уже нечего делить
-
-        // выбрать опорный элемент
+            return;
         int middle = low + (high - low) / 2;
         int opora = array.get(middle);
-
-        // разделить на подмассивы, который больше и меньше опорного элемента
         int i = low, j = high;
         while (i <= j) {
             while (array.get(i) < opora) {
                 i++;
             }
-
             while (array.get(j) > opora) {
                 j--;
             }
-
-            if (i <= j) {//меняем местами
+            if (i <= j) {
                 int temp = array.get(i);
                 array.set(i, array.get(j));
                 array.set(j, temp);
@@ -124,7 +118,6 @@ public class Main {
                 j--;
             }
         }
-        // вызов рекурсии для сортировки левой и правой части
         if (low < j)
             quickSort(low, j, n);
         if (high > i)
